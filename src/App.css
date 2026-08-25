@@ -1,10 +1,10 @@
 :root {
-    --primary-color: #2c5e3b;      /* 主色调改为沉稳高级的森林深绿色 */
-    --accent-color: #4c8c62;     /* 强调/悬停色改为清新自然的翠绿色 */
-    --bg-color: #f4f7f4;         /* 背景色改为极淡的青灰白暖色调 */
+    --primary-color: #10b981;      /* 主色调改为清新明亮的薄荷翠绿 */
+    --accent-color: #34d399;     /* 强调/悬停色改为跳跃的浅薄荷绿 */
+    --bg-color: #f0fdf4;         /* 背景色改为极淡的薄荷绿白调 */
     --card-bg: #ffffff;
-    --text-main: #2b332d;
-    --text-muted: #6b7c70;
+    --text-main: #1f2937;        /* 深灰主文本，保持极佳的清晰度 */
+    --text-muted: #4b5563;
 }
 
 * {
@@ -27,7 +27,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #e2ece4;
+    border-bottom: 1px solid #d1fae5;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -95,20 +95,20 @@ body {
     background-color: var(--card-bg);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(44, 94, 59, 0.08); /* 调整为带有绿调的柔和阴影 */
+    box-shadow: 0 4px 20px rgba(16, 185, 129, 0.1); /* 调整为清透的薄荷绿光影 */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .furniture-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 12px 30px rgba(44, 94, 59, 0.15);
+    box-shadow: 0 12px 30px rgba(16, 185, 129, 0.2);
 }
 
 .image-wrapper {
     width: 100%;
     height: 280px;
     overflow: hidden;
-    background-color: #ebf2ed; /* 图片加载前的占位底色调整为浅青绿色 */
+    background-color: #e6fcf5; /* 图片占位底色调整为浅薄荷色 */
 }
 
 .image-wrapper img {
@@ -153,7 +153,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid #ebf2ed;
+    border-top: 1px solid #e6fcf5;
     padding-top: 16px;
 }
 
@@ -182,8 +182,8 @@ body {
 .footer {
     text-align: center;
     padding: 40px;
-    background-color: #1e2620; /* 页脚调成富有质感的深墨绿色，过渡沉稳自然 */
-    color: #9cb3a2;
+    background-color: #064e3b; /* 页脚采用深墨绿色，衬托薄荷绿的明亮感 */
+    color: #6ee7b7;
     font-size: 14px;
 }
 
