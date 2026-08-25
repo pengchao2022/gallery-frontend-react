@@ -158,21 +158,23 @@ jobs:
           
           cd cd-repo
           
-          echo "Updating deployment.yaml image tag to $NEW_VERSION..."
+          echo "Updating rollout.yaml image tag to $NEW_VERSION..."
+    
           if [[ "$OSTYPE" == "darwin"* ]]; then
-            sed -i '' "s|image: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:.*|image: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:$NEW_VERSION|g" manifests/deployment.yaml
+            sed -i '' "s|image: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:.*|image: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:$NEW_VERSION|g" manifests/rollout.yaml
           else
-            sed -i "s|image: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:.*|image: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:$NEW_VERSION|g" manifests/deployment.yaml
+            sed -i "s|image: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:.*|image: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:$NEW_VERSION|g" manifests/rollout.yaml
           fi
           
-          git diff manifests/deployment.yaml
+          git diff manifests/rollout.yaml
           
-          git add manifests/deployment.yaml
-          git commit -m "chore: update frontend-react image tag to $NEW_VERSION [skip ci]"
+          git add manifests/rollout.yaml
+          git commit -m "chore: update frontend-react rollout image tag to $NEW_VERSION [skip ci]"
           
           echo "Pushing changes back to CD repository..."
           git push origin main
           echo "✅ CD repository successfully updated!"
+
 
       - name: Output build summary
         run: |
