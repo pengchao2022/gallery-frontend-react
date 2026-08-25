@@ -1,7 +1,7 @@
 :root {
-    --primary-color: #d46a84;      /* 主色调改为温柔优雅的玫瑰粉 */
-    --accent-color: #e8a5b5;     /* 强调/悬停色改为浅粉色 */
-    --bg-color: #fff9fa;         /* 背景色改为极淡的粉白暖色调 */
+    --primary-color: #2c2c2c;
+    --accent-color: #c5a880;
+    --bg-color: #f9f9f8;
     --card-bg: #ffffff;
     --text-main: #333333;
     --text-muted: #777777;
@@ -27,7 +27,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-bottom: 1px solid #f2e6e8;
+    border-bottom: 1px solid #eaeaea;
     position: sticky;
     top: 0;
     z-index: 100;
@@ -54,7 +54,7 @@ body {
 }
 
 .nav-links a:hover {
-    color: var(--primary-color);
+    color: var(--accent-color);
 }
 
 /* 英雄区 (Banner) */
@@ -95,20 +95,20 @@ body {
     background-color: var(--card-bg);
     border-radius: 12px;
     overflow: hidden;
-    box-shadow: 0 4px 20px rgba(212, 106, 132, 0.08); /* 微微带有一点粉调的柔和阴影 */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .furniture-card:hover {
     transform: translateY(-6px);
-    box-shadow: 0 12px 30px rgba(212, 106, 132, 0.15);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.1);
 }
 
 .image-wrapper {
     width: 100%;
     height: 280px;
     overflow: hidden;
-    background-color: #f9f1f3;
+    background-color: #f1f1f1;
 }
 
 .image-wrapper img {
@@ -131,7 +131,7 @@ body {
     font-size: 11px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    color: var(--primary-color);
+    color: var(--accent-color);
     margin-bottom: 8px;
     font-weight: 600;
 }
@@ -140,7 +140,7 @@ body {
     font-size: 20px;
     font-weight: 600;
     margin-bottom: 8px;
-    color: var(--text-main);
+    color: var(--primary-color);
 }
 
 .card-desc {
@@ -153,7 +153,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border-top: 1px solid #f9f1f3;
+    border-top: 1px solid #f0f0f0;
     padding-top: 16px;
 }
 
@@ -182,8 +182,8 @@ body {
 .footer {
     text-align: center;
     padding: 40px;
-    background-color: #2c2528; /* 页脚调成带有暖棕粉调的深色，过渡更和谐 */
-    color: #cca8b0;
+    background-color: #222;
+    color: #aaa;
     font-size: 14px;
 }
 
