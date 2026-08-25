@@ -68,7 +68,7 @@ export default function App() {
     <div className="app">
       {/* 顶部导航 */}
       <header className="header">
-        <div className="logo">ARTISAN<span>.</span></div>
+        <div className="logo">Maxwell<span>.</span></div>
         <nav className="nav-links">
           <a href="#gallery">精选展厅</a>
           <a href="#spaces">空间系列</a>
@@ -117,7 +117,7 @@ export default function App() {
 
       {/* 页脚 */}
       <footer className="footer">
-        <p>&copy; 2026 Artisan Living. All Rights Reserved. Designed with React.</p>
+        <p>&copy; 2026 Maxwell Living. All Rights Reserved. Designed with React.</p>
       </footer>
     </div>
   );
