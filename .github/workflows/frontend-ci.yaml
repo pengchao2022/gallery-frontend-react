@@ -35,7 +35,7 @@ env:
   AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
 
 jobs:
-  react-ci:
+  frontend-ci:
     runs-on: ubuntu-latest
 
     steps:
