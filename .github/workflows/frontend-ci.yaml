@@ -142,7 +142,7 @@ jobs:
           docker push ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:$IMAGE_TAG
 
      
-      - name: Update CD Repository Manifest
+      - name: Update CD Repository Manifest & Create PR
         env:
           NEW_VERSION: ${{ steps.version.outputs.new_version }}
           CD_PAT: ${{ secrets.CD_REPO_PAT }} 
@@ -161,8 +161,11 @@ jobs:
           
           cd cd-repo
           
+          # 创建一个带有时间戳或版本号的唯一临时分支，防止重名冲突
+          BRANCH_NAME="auto-update-rollout-$NEW_VERSION"
+          git checkout -b "$BRANCH_NAME"
+          
           echo "Updating rollout.yaml image tag to $NEW_VERSION..."
-    
           if [[ "$OSTYPE" == "darwin"* ]]; then
             sed -i '' "s|image: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:.*|image: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:$NEW_VERSION|g" manifests/rollout.yaml
           else
@@ -174,10 +177,33 @@ jobs:
           git add manifests/rollout.yaml
           git commit -m "chore: update frontend-react rollout image tag to $NEW_VERSION [skip ci]"
           
-          echo "Pushing changes back to CD repository..."
-          git push origin main
-          echo "✅ CD repository successfully updated!"
-
+          echo "Pushing branch to CD repository..."
+          # 如果分支已存在则强行覆盖
+          git push origin "$BRANCH_NAME" --force
+          
+          echo "Creating Pull Request via GitHub API..."
+          PR_JSON=$(jq -n \
+            --arg title "chore: update frontend-react image to $NEW_VERSION" \
+            --arg head "$BRANCH_NAME" \
+            --arg base "main" \
+            --arg body "Automated image tag update from Frontend CI pipeline. Version: $NEW_VERSION" \
+            '{title: $title, head: $head, base: $base, body: $body}')
+          
+          RESPONSE=$(curl -s -X POST \
+            -H "Authorization: token $CD_PAT" \
+            -H "Accept: application/vnd.github.v3+json" \
+            https://api.github.com/repos/pengchao2022/gallery-frontend-react-cd/pulls \
+            -d "$PR_JSON")
+          
+          # 检查 PR 是否创建成功
+          PR_URL=$(echo "$RESPONSE" | jq -r '.html_url // empty')
+          if [ -n "$PR_URL" ]; then
+            echo "✅ Pull Request successfully created: $PR_URL"
+          else
+            echo "❌ Failed to create Pull Request. Response:"
+            echo "$RESPONSE"
+            exit 1
+          fi
 
       - name: Output build summary
         run: |
