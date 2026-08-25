@@ -90,7 +90,7 @@ body {
     gap: 30px;
 }
 
-/* 家具卡片样式 */
+
 .furniture-card {
     background-color: var(--card-bg);
     border-radius: 12px;
@@ -187,7 +187,6 @@ body {
     font-size: 14px;
 }
 
-/* 响应式适配 */
 @media (max-width: 768px) {
     .hero h1 {
         font-size: 32px;
