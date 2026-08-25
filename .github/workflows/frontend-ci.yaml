@@ -33,6 +33,7 @@ env:
   ECR_REGISTRY: 317429619308.dkr.ecr.us-east-1.amazonaws.com
   ECR_REPOSITORY: frontend-react
   AWS_ROLE_ARN: ${{ secrets.AWS_ROLE_ARN }}
+  CD_REPO_URL: github.com/pengchao2022/gallery-frontend-react-cd.git 
 
 jobs:
   frontend-ci:
@@ -134,12 +135,44 @@ jobs:
           echo "Building Docker image with tag: $IMAGE_TAG for ECR..."
           docker build -t ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:$IMAGE_TAG .
           
-          echo "Pushing Docker image to ECR..."
+          echo "Pushing Docker image to ECR (Semantic Tag Only)..."
           docker push ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:$IMAGE_TAG
+
+     
+      - name: Update CD Repository Manifest
+        env:
+          NEW_VERSION: ${{ steps.version.outputs.new_version }}
+          CD_PAT: ${{ secrets.CD_REPO_PAT }} 
+        run: |
+          if [ -z "$CD_PAT" ]; then
+            echo "❌ Error: CD_REPO_PAT secret is missing in CI repository!"
+            exit 1
+          fi
+
+          echo "Configuring git identity..."
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
           
-          # 同时给镜像打上 latest 标签并推送（方便其他环境或测试快速拉取）
-          docker tag ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:$IMAGE_TAG ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:latest
-          docker push ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:latest
+          echo "Cloning CD repository..."
+          git clone https://x-access-token:${CD_PAT}@${{ env.CD_REPO_URL }} cd-repo
+          
+          cd cd-repo
+          
+          echo "Updating deployment.yaml image tag to $NEW_VERSION..."
+          if [[ "$OSTYPE" == "darwin"* ]]; then
+            sed -i '' "s|image: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:.*|image: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:$NEW_VERSION|g" manifests/deployment.yaml
+          else
+            sed -i "s|image: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:.*|image: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:$NEW_VERSION|g" manifests/deployment.yaml
+          fi
+          
+          git diff manifests/deployment.yaml
+          
+          git add manifests/deployment.yaml
+          git commit -m "chore: update frontend-react image tag to $NEW_VERSION [skip ci]"
+          
+          echo "Pushing changes back to CD repository..."
+          git push origin main
+          echo "✅ CD repository successfully updated!"
 
       - name: Output build summary
         run: |
