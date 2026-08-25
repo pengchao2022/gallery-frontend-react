@@ -1,21 +1,11 @@
 name: Build and Push React Frontend to ECR
 
 on:
-  # pull_request:
-  #   types:
-  #     - closed
-  #   paths:
-  #     - 'src/**'           
-  #     - 'public/**'
-  #     - 'Dockerfile'       
-  #     - 'package.json'
-  #     - 'index.html'
-  #     - '.github/workflows/frontend-ci.yaml'  
-
-  push:
+  pull_request:
+    types:
+      - closed
     branches:
-      - "feature/**"
-
+      - "main"
     paths:
       - 'src/**'           
       - 'public/**'
@@ -23,6 +13,18 @@ on:
       - 'package.json'
       - 'index.html'
       - '.github/workflows/frontend-ci.yaml'  
+
+  # push:
+  #   branches:
+  #     - "feature/**"
+
+  #   paths:
+  #     - 'src/**'           
+  #     - 'public/**'
+  #     - 'Dockerfile'       
+  #     - 'package.json'
+  #     - 'index.html'
+  #     - '.github/workflows/frontend-ci.yaml'  
 
 permissions:
   id-token: write
@@ -38,6 +40,7 @@ env:
 jobs:
   frontend-ci:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true
 
     steps:
       - name: Checkout code
