@@ -1,16 +1,16 @@
 name: Build and Push React Frontend to ECR
 
 on:
-  pull_request:
-    types:
-      - closed
-    paths:
-      - 'src/**'           
-      - 'public/**'
-      - 'Dockerfile'       
-      - 'package.json'
-      - 'index.html'
-      - '.github/workflows/frontend-ci.yaml'  
+  # pull_request:
+  #   types:
+  #     - closed
+  #   paths:
+  #     - 'src/**'           
+  #     - 'public/**'
+  #     - 'Dockerfile'       
+  #     - 'package.json'
+  #     - 'index.html'
+  #     - '.github/workflows/frontend-ci.yaml'  
 
   push:
     branches:
