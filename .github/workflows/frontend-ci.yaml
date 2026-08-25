@@ -10,7 +10,7 @@ on:
       - 'Dockerfile'       
       - 'package.json'
       - 'index.html'
-      - '.github/workflows/frontend-ci.yml'  
+      - '.github/workflows/frontend-ci.yaml'  
 
   push:
     branches:
@@ -22,7 +22,7 @@ on:
       - 'Dockerfile'       
       - 'package.json'
       - 'index.html'
-      - '.github/workflows/frontend-ci.yml'  
+      - '.github/workflows/frontend-ci.yaml'  
 
 permissions:
   id-token: write
