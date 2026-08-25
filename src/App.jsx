@@ -111,7 +111,7 @@ export default function App() {
 
       {/* 页脚 */}
       <footer className="footer">
-        <p>&copy; 2026 Maxwell Living. All Rights Reserved. Designed with React.</p>
+        <p>&copy; 2026 Maxwell Living. All Rights Reserved. Designed with React. Please contact me @18510656167</p>
       </footer>
     </div>
   );
