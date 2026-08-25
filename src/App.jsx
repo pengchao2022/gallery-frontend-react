@@ -9,8 +9,7 @@ const furnitureItems = [
     title: '北极星单人休闲椅',
     desc: '采用高档棉麻面料与实木框架，兼具人体工学与优雅流线造型。',
     price: '¥ 2,880',
-    image: '/images/chair-1.jpg',
-    fallbackImage: 'https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80'
+    image: '/images/chair-1.jpg'
   },
   {
     id: 2,
@@ -18,8 +17,7 @@ const furnitureItems = [
     title: '云端模块化布艺沙发',
     desc: '超宽深坐垫设计，羽绒填充，给予身体全方位的松弛包裹感。',
     price: '¥ 8,990',
-    image: '/images/sofa-1.jpg',
-    fallbackImage: 'https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=600&q=80'
+    image: '/images/sofa-1.jpg'
   },
   {
     id: 3,
@@ -27,8 +25,7 @@ const furnitureItems = [
     title: '北美FAS级白橡木餐桌',
     desc: '温润的天然木纹，边缘圆润打磨，承载温馨的家庭聚会时光。',
     price: '¥ 4,500',
-    image: '/images/table-1.jpg',
-    fallbackImage: 'https://images.unsplash.com/photo-1615066390971-03e4e1c36ddf?auto=format&fit=crop&w=600&q=80'
+    image: '/images/table-1.jpg'
   },
   {
     id: 4,
@@ -36,8 +33,7 @@ const furnitureItems = [
     title: '留白极简艺术落地灯',
     desc: '柔和漫反射光效，勾勒空间层次，兼具雕塑感的现代照明艺术品。',
     price: '¥ 1,280',
-    image: '/images/lamp-1.jpg',
-    fallbackImage: 'https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=80'
+    image: '/images/lamp-1.jpg'
   },
   {
     id: 5,
@@ -45,8 +41,7 @@ const furnitureItems = [
     title: '黑胡桃木悬浮双人床',
     desc: '轻盈的悬浮视觉设计，精选进口黑胡桃木，打造安稳沉静的睡眠空间。',
     price: '¥ 6,200',
-    image: '/images/bed-1.jpg',
-    fallbackImage: 'https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=600&q=80'
+    image: '/images/bed-1.jpg'
   },
   {
     id: 6,
@@ -54,8 +49,7 @@ const furnitureItems = [
     title: '日式木格栅多功能边柜',
     desc: '半透格栅门板，兼具透气与储物美学，完美融入各类客厅风格。',
     price: '¥ 3,600',
-    image: '/images/cabinet-1.jpg',
-    fallbackImage: 'https://images.unsplash.com/photo-1595428774223-ef52624120d2?auto=format&fit=crop&w=600&q=80'
+    image: '/images/cabinet-1.jpg'
   }
 ];
 
